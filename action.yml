@@ -1,0 +1,16 @@
+name: 'Web Validate'
+description: 'Web Validate (WebV) is a web request validation tool that can be used to run integration tests and long-running smoke tests.'
+inputs:
+  server:  
+    description: 'Base URL to validate'
+    required: true
+  filename:
+    description: 'WebV Test files (json)'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'action/Dockerfile'
+  args:
+    - ${{ inputs.server }}
+    - ${{ inputs.filename }}
