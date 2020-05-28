@@ -1,0 +1,36 @@
+name: Nuget Build
+
+on:
+  push:
+    branches:
+      - master
+
+    paths-ignore:
+      - 'docs/**'
+      - '.github/**'
+      - 'README.md'
+      - 'savenv.sh'
+
+    tags:
+      - v*
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:    
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.202'
+
+    - name: Run Unit Tests
+      run: dotnet test src/unit-tests --logger:trx     
+
+    - name: Pack
+      run: dotnet pack src/webvalidate.sln
+      
+    - name: push
+      run: dotnet nuget push app/nupkg/ --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
+  
