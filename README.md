@@ -50,6 +50,33 @@ docker run -it --rm -v ~/webv:/app/TestFiles --net=host  retaildevcrew/webvalida
 
 ```
 
+## WebV Quick Start - dotnet global tool
+Web Validate can be run as a command line tool. After installation, you can invoke the tool using "webv". 
+
+
+```bash
+#install the webv cli tool
+dotnet install -g webvalidate
+```
+
+To invoke webv, you need to have at least one validation file with rules defined. The following example downloads avalidation file and runs a test against the microsoft web site.
+
+```bash
+mkdir ~/my_api
+
+cd ~/my_api
+
+mkdir TestFiles
+
+#download the msft.json validations file
+wget -P TestFiles https://raw.githubusercontent.com/retaildevcrews/webvalidate/master/src/app/TestFiles/msft.json
+
+#run a test against microsoft.com
+webv -server https://www.microsoft.com --files msft.json
+```
+The json validation files should be in a folder named "TestFiles." When running the webv cli tool, ensure TestFiles is a subdirectory of the path you are running webv from.
+
+-----
 Web Validate uses both environment variables as well as command line options for configuration. Command flags take precedence over environment variables.
 
 Web Validate works in two distinct modes. The default mode processes the input file(s) in sequential order one time and exits. The "run loop" mode runs in a continuous loop until stopped or for the specified duration. Some environment variables and command flags are only valid if run loop is specified and the application will exit and display usage information. Some parameters have different default values depending on the mode of execution.
