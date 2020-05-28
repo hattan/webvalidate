@@ -32,5 +32,5 @@ jobs:
       run: dotnet pack src/webvalidate.sln
       
     - name: push
-      run: dotnet nuget push app/nupkg/ --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
+      run: dotnet nuget push src/app/nupkg/ --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
   
