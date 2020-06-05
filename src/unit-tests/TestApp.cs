@@ -45,11 +45,6 @@ namespace CSE.WebValidate.Tests.Unit
 
             // test with null config
             Assert.NotEqual(0, await wv.RunOnce(null, new System.Threading.CancellationToken()).ConfigureAwait(false));
-<<<<<<< HEAD
-
-            cfg.Dispose();
-=======
->>>>>>> 19bf1db2709948cc8364a9457ba1defa9b2cb2c2
         }
 
         [Fact]
