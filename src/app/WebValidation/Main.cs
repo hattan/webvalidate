@@ -124,11 +124,6 @@ namespace CSE.WebValidate
                         }
                     }
                 }
-                catch (OperationCanceledException oce)
-                {
-                    // safe to ignore
-                    Console.WriteLine(oce.Message);
-                }
                 catch (Exception ex)
                 {
                     // ignore any error and keep processing
