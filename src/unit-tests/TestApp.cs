@@ -35,22 +35,7 @@ namespace CSE.WebValidate.Tests.Unit
                 MaxConcurrentRequests = 100
             };
 
-            cfg.FileList.Add("actorById.json");
-            cfg.FileList.Add("bad.json");
-            cfg.FileList.Add("baseline.json");
-            cfg.FileList.Add("benchmark.json");
-            cfg.FileList.Add("dotnet.json");
-            cfg.FileList.Add("featured.json");
-            cfg.FileList.Add("foreach.json");
-            cfg.FileList.Add("genres.json");
-            cfg.FileList.Add("java.json");
-            cfg.FileList.Add("movieById.json");
-            cfg.FileList.Add("moviesByActorId.json");
             cfg.FileList.Add("msft.json");
-            cfg.FileList.Add("node.json");
-            cfg.FileList.Add("rating.json");
-            cfg.FileList.Add("search.json");
-            cfg.FileList.Add("year.json");
 
             // load and validate all of our test files
             using var wv = new WebV(cfg);
@@ -60,8 +45,11 @@ namespace CSE.WebValidate.Tests.Unit
 
             // test with null config
             Assert.NotEqual(0, await wv.RunOnce(null, new System.Threading.CancellationToken()).ConfigureAwait(false));
+<<<<<<< HEAD
 
             cfg.Dispose();
+=======
+>>>>>>> 19bf1db2709948cc8364a9457ba1defa9b2cb2c2
         }
 
         [Fact]
@@ -69,7 +57,7 @@ namespace CSE.WebValidate.Tests.Unit
         {
             // set all env vars
             System.Environment.SetEnvironmentVariable(EnvKeys.Duration, "30");
-            System.Environment.SetEnvironmentVariable(EnvKeys.Files, "baseline.json dotnet.json");
+            System.Environment.SetEnvironmentVariable(EnvKeys.Files, "baseline.json");
             System.Environment.SetEnvironmentVariable(EnvKeys.Server, "froyo");
             System.Environment.SetEnvironmentVariable(EnvKeys.MaxConcurrent, "100");
             System.Environment.SetEnvironmentVariable(EnvKeys.Random, "false");
@@ -83,7 +71,7 @@ namespace CSE.WebValidate.Tests.Unit
             var cmd = App.MergeEnvVarIntoCommandArgs(null);
 
             // validate
-            Assert.Equal(23, cmd.Count);
+            Assert.Equal(22, cmd.Count);
 
             // clear env vars
             System.Environment.SetEnvironmentVariable(EnvKeys.Duration, null);
@@ -108,7 +96,7 @@ namespace CSE.WebValidate.Tests.Unit
         [Fact]
         public void VersionTest()
         {
-            Assert.NotNull(CSE.WebValidate.Version.AssemblyVersion);
+            Assert.NotNull(Version.AssemblyVersion);
         }
 
         [Fact]
