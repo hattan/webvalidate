@@ -3,7 +3,7 @@ name: Nuget Build
 on:
   push:
     branches:
-      - dotnet_global_tool
+      - master
 
     paths-ignore:
       - 'docs/**'
