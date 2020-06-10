@@ -27,9 +27,13 @@ jobs:
     - name: Run Unit Tests
       run: dotnet test src/unit-tests --logger:trx     
 
-    - name: Pack
-      run: dotnet pack src/webvalidate.sln
+    - name: Pack and Publish
+      run: |
       
-    - name: push
-      run: dotnet nuget push src/app/nupkg/ --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
-  
+        # TODO - merge with dockerCI.yaml
+
+        if [[ "${{ secrets.NUGET_KEY }}" != "" ]];
+        then
+          dotnet pack src/webvalidate.sln
+          dotnet nuget push src/app/nupkg/ --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_KEY }}
+        fi
